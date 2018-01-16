@@ -1,98 +1,94 @@
 $(function(){
     function TableData(list){
-        this.listOfSongs = list;
-        this.minMax = $('input[name="minmax"]');
+        this.list = list;
         this.tbody = $("#tbody");
+        this.sortingFunction = null
 
-        this.populateTable = function(sortingFunction){
-            let minMax = parseInt($('input[name="minmax"]:checked').val());
-            if(sortingFunction != null){
-                this.listOfSongs = this.listOfSongs.sort(sortingFunction)
+        this.populateTable = function(){
+            if(this.sortingFunction != null){
+                this.list = this.list.sort(this.sortingFunction);
             }
-            if(minMax > 0){
-                this.listOfSongs = this.listOfSongs.reverse();
-                console.log(this.listOfSongs);
-            }
+            // one more if for MIN ~ MAX / MAX ~ MIN
+            //
+            // use reverse() on list array
+            //
+            //
             this.tbody.html("");
-            this.listOfSongs.forEach(element => {
-                var row = $("<tr>");
-                $("<td>").text(element.rank).appendTo(row)
-                $("<td>").text(element.song).appendTo(row)
-                $("<td>").text(element.artist).appendTo(row)
-                $("<td>").text(element.releaseYear).appendTo(row)
-                $("<td>").text(element.duration).appendTo(row)
+            this.list.forEach(song => {
+                let row = $("<tr>");
+                $("<td>").text(song.rank).appendTo(row);
+                $("<td>").text(song.song).appendTo(row);
+                $("<td>").text(song.artist).appendTo(row);
+                $("<td>").text(song.releaseYear).appendTo(row);
+                $("<td>").text(song.duration).appendTo(row);
                 this.tbody.append(row);
             });
+        };
 
-        }
-        this.setListOfSongs = function(list){
-            this.listOfSongs = list;
+        this.setList = function(list){
+            this.list = list;
             this.populateTable();
         }
+        this.setSortingFunction = function(sortingFunction){
+            this.sortingFunction = sortingFunction;
+            // this.populateTable();
+        }
     }
-    var originalList = [];
-    var table = new TableData(originalList, false);
-    // events
-    $("#pull").on("click", getData);
-    $("#sort").on("change",sortData);
-    $("input[name='minmax']").on('change',function(){
-        $("#sort").change();
-    })
+
+    let table = new TableData([]);
 
 
-
-    function getData(){
+    $("#pull").on("click", function(){
         $.ajax({
             method:"GET",
             url:"http://demo6418849.mockable.io/songs",
             success:function(data){
-                originalList = data;
-                table.setListOfSongs(data);
+                console.log(data);
+                table.setList(data);
             },
             error:function(error){
                 console.log(error);
             }
         })
-    }
-    
-    function sortData(e){
-        var pickedValue = e.target.value;
-    
+    });
+
+    $("#sort").on("change", function(event){
+        var pickedValue = event.target.value;
+        var sortingFunction = null;
         switch(pickedValue){
-            case '1': // Rank
-                table.populateTable((a,b) => (a.rank - b.rank));
-                // var sortedByRank = originalList.sort((a,b) => (a.rank - b.rank));
-                // table.setListOfSongs(sortedByRank);
+            case '1': //sort by rank
+                sortingFunction = (a, b) => 
+                        (parseInt(a.rank) - parseInt(b.rank));
                 break;
-            case '2': // Song Name
-                table.populateTable((a, b) => a.song.localeCompare(b.song));
-                // var sortedBySongName = originalList.sort((a, b) => a.song.localeCompare(b.song));
-                // table.setListOfSongs(sortedBySongName);
+            case '2': // sort by song name
+                sortingFunction = (a, b) => 
+                        (a.song.localeCompare(b.song));
                 break;
-            case '3': // Artist Name
-                table.populateTable((a, b) => a.artist.localeCompare(b.artist));
-                // var sortedByArtist = originalList.sort((a, b) => a.artist.localeCompare(b.artist));
-                // table.setListOfSongs(sortedByArtist);
+            case '3': // sort by artist name
+                sortingFunction = (a, b) => 
+                    (a.artist.localeCompare(b.artist));
                 break;
-            case '4': // Release Year
-                table.populateTable((a,b) => (a.releaseYear - b.releaseYear));
-                // var sortedByReleaseYear = originalList.sort((a,b) => (a.releaseYear - b.releaseYear));
-                // table.setListOfSongs(sortedByReleaseYear);
+            case '4': // sort by release date
+                sortingFunction = (a, b) => 
+                    (parseInt(a.releaseYear) - parseInt(b.releaseYear));
                 break;
-            case '5': // Duration
-                table.populateTable((a,b) => (evaluateMinutes(a.duration) - evaluateMinutes(b.duration)));
-                // var sortedByDuration = originalList.sort((a,b) => (evaluateMinutes(a.duration) - evaluateMinutes(b.duration)));
-                // table.setListOfSongs(sortedByDuration);
+            case '5': // sort by duration
+                sortingFunction = (a, b) => 
+                    (evaluateMinutesToSeconds(a.duration) - 
+                    evaluateMinutesToSeconds(b.duration));
                 break;
             default:
-                table.setListOfSongs(originalList);
                 break;
         }
-    }
-    
-    function evaluateMinutes(minutes){
-        var minutesArray = minutes.split(":");
-        return (minutesArray[0] * 60) + minutesArray[1]
+        table.setSortingFunction(sortingFunction);
+        table.populateTable();
+    });
+
+    function evaluateMinutesToSeconds(duration){
+        
+        let durationArray = duration.split(":").map(x => parseInt(x));
+        return (durationArray[0] * 60) + durationArray[1];
     }
 });
 
+// http://introduction-to-functions.surge.sh/
