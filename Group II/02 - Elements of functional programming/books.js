@@ -25,14 +25,14 @@ let books = [{
     author: "Isaac Asimov",
     title: "The gods themselves",
 }, {
-    author: "Arthur Clarke",
-    title: "The city and the Stars",
+    author: "Margaret Atwood",
+    title: "The handmaid's tale",
 }, {
     author: "Vernon Vinge",
     title: "Fire in the deep"
 }, {
-    author: "Isaac Asimov",
-    title: "Caves of steel",
+    author: "Andy Weir",
+    title: "The martian",
 }]
 
 function getAuthors(bookArray){
