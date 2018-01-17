@@ -70,4 +70,7 @@ let init = () => {
 }
 
 document.addEventListener("DOMContentLoaded", init);
-document.getElementById()
+
+/// spread operator
+/// destructuring operator
+/// rest operator

@@ -118,5 +118,58 @@ function getSquaresOfEvens(array) {
 
 console.log(collection);
 console.log(getSquaresOfEvens(collection));
-console.log(makeArray(getArray(collection, n => n % 2 !== 0), n => n*3));
+console.log(makeArray(getArray(collection, n => n % 2 !== 0), n => n * 3));
 console.log("=================");
+console.log("=================");
+
+let result = makeArray(collection, n => n * 3);
+
+let makeArrayFunction = function (operation) {
+    let result = function (array) {
+        return makeArray(array, operation);
+    }
+    return result;
+}
+
+// let makeArrayFunction = (operation) =>
+//     (array) => makeArray(array, operation);
+
+let mapTriplicate = makeArrayFunction(n => n * 3);
+
+result = mapTriplicate(collection);
+console.log(result);
+
+let threeplusone = makeArrayFunction(n => n * 3 + 1);
+console.log(threeplusone(collection));
+
+console.log("=================");
+console.log(makeArray(collection, n => n * n));
+console.log(makeArrayFunction(n => n * n)(collection));
+
+console.log("=================");
+function add(x, y) {
+    return x + y;
+}
+
+console.log(add(3, 5));
+
+function addCurry(x) {
+    return y => x + y;
+}
+
+
+console.log(addCurry(3)(5));
+
+//let add3 = function (x) { return x + 3; }
+let add3 = addCurry(3);
+
+console.log(add3(5));
+console.log(add3(6));
+console.log(add3(9));
+
+let adders = makeArray(collection, n => addCurry(n));
+
+result = makeArray(adders, adder => adder(1));
+console.log(collection);
+console.log(adders);
+console.log(result);

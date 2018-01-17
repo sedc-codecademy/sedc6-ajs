@@ -19,6 +19,9 @@ function getArray(array, predicate) {
 }
 
 let books = [{
+    author: "Vernon Vinge",
+    title: "Marooned in realtime"
+}, {
     author: "Arthur Clarke",
     title: "Randezvous with Rama",
 }, {
@@ -33,15 +36,34 @@ let books = [{
 }, {
     author: "Andy Weir",
     title: "The martian",
+}, {
+    author: "Andy Weir",
+    title: "Artemis",
+}, {
+    author: "Vernon Vinge",
+    title: "A deepness in the sky"
 }]
 
-function getAuthors(bookArray){
+function getAuthors(bookArray) {
     return bookArray.map(book => book.author);
     //return makeArray(bookArray, book => book.author);
 }
 
-function getTitles(bookArray){
-    // ...
-}
-
 console.log(getAuthors(books));
+console.log(books.map(b => b.title));
+
+var collection = [1, 2, 3, 5, 6, 12, 4];
+collection.sort((a, b) => a - b);
+console.log(collection);
+
+books.sort((a, b) => {
+    let authorCompare = a.author.localeCompare(b.author);
+    if (authorCompare !== 0)
+        return authorCompare;
+
+    return a.title.localeCompare(b.title);
+});
+console.log(books);
+
+
+
