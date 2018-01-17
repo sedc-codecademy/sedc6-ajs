@@ -47,5 +47,27 @@ result = apply10Times(double, 3);
 console.log(result);
 
 function applyxtimes(fn, arg, x) {
-    /// ...
+    let result = arg;
+    for (let i=0; i<x; i+=1){
+        result = fn(result);
+    }
+    return result;
 }
+
+let addWeko = value => value + "Weko";
+
+let callApply = () => {
+    let name = document.getElementById("name").value;
+    let times = document.getElementById("times").valueAsNumber;
+
+    let result = applyxtimes(value => value + name, "", times);
+    document.getElementById("result").innerHTML = result;
+}
+
+let init = () => {
+    let button = document.getElementById("doit");
+    button.addEventListener("click", callApply);
+}
+
+document.addEventListener("DOMContentLoaded", init);
+document.getElementById()
