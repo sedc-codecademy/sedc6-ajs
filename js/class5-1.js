@@ -45,6 +45,8 @@ classB.prototype.constructor = classB;
 
 // set the "_super" to the classA constructor function
 Student.prototype._super = classA;
+
+// + var __extends; needs to be defined 
 */
 
 //In console
