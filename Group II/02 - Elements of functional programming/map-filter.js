@@ -49,7 +49,7 @@ console.log(makeArray(collection, n => n + n));
 
 console.log("=================");
 
-function getEvens(array){
+function getEvens(array) {
     let result = [];
     for (let index = 0; index < array.length; index++) {
         const element = array[index];
@@ -60,9 +60,63 @@ function getEvens(array){
     return result;
 }
 
-function getOdds(array){
-    // 
+function getOdds(array) {
+    let result = [];
+    for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+        if (element % 2 !== 0) {
+            result.push(element);
+        }
+    }
+    return result;
+}
+
+function getBetween3and9(array) {
+    let result = [];
+    for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+        if (element >= 3 && element <= 9) {
+            result.push(element);
+        }
+    }
+    return result;
 }
 
 console.log(collection);
 console.log(getEvens(collection));
+console.log(getOdds(collection));
+console.log(getBetween3and9(collection));
+console.log("=================");
+
+function getArray(array, predicate) {
+    let result = [];
+    for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+        if (predicate(element)) {
+            result.push(element);
+        }
+    }
+    return result;
+}
+
+console.log(collection);
+console.log(getArray(collection, n => n % 2 === 0));
+console.log(getArray(collection, n => n % 2 !== 0));
+console.log(getArray(collection, n => (n >= 3) && (n <= 9)));
+console.log("=================");
+
+function getSquaresOfEvens(array) {
+    let result = [];
+    for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+        if (element % 2 === 0) {
+            result.push(element * element);
+        }
+    }
+    return result;
+}
+
+console.log(collection);
+console.log(getSquaresOfEvens(collection));
+console.log(makeArray(getArray(collection, n => n % 2 !== 0), n => n*3));
+console.log("=================");
