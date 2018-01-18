@@ -97,5 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+/// spread operator
+/// destructuring operator
+/// rest operator
 
 
