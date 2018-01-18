@@ -1,27 +1,29 @@
-// let weko = function(n) {
-//     return n*2;
-// }
+let factor = 2;
 
-// let otherWeko = weko;
+let wekoFn = function (n) {
+    return n * factor;
+}
 
-// console.log(weko(3));
-// console.log(otherWeko(4));
+let otherWeko = wekoFn;
 
-// weko = {
-//     firstName: "Wekoslav",
-//     lastName: "Stefanovski",
-//     square: function (n){ return n* n;},
-//     double: n => {
-//         console.log("inside double");
-//         return n + n;
-//     },
-//     triple: n => n*3,
-// };
+console.log(wekoFn(3));
+console.log(otherWeko(4));
 
-// console.log(weko.firstName);
-// console.log(weko.square(5));
-// console.log(weko.double(5));
-// console.log(weko.triple(5));
+let wekoObj = {
+    firstName: "Wekoslav",
+    lastName: "Stefanovski",
+    square: function (n) { return n * n; },
+    double: n => {
+        console.log("inside double");
+        return n + n;
+    },
+    triple: n => n * 3,
+};
+
+console.log(wekoObj.firstName);
+console.log(wekoObj.square(5));
+console.log(wekoObj.double(5));
+console.log(wekoObj.triple(5));
 
 function double(n) {
     console.log("inside double");
@@ -53,11 +55,47 @@ function applyx(fn, arg, x) {
 
 console.log(applyx(double, 2, 5));
 
-function applyTenTimes(fn, arg){
-    //...
+function applyTenTimes(fn, arg) {
+    console.log("inside apply 10");
+    let result = arg;
+    for (let i = 0; i < 10; i += 1) {
+        result = fn(result);
+    }
+    return result;
 }
 
+let printWeko = value => value + " Weko";
 
+console.log(applyTenTimes(double, 3));
+console.log(applyTenTimes(wekoObj.triple, 6));
+console.log(applyTenTimes(printWeko, ""));
+
+let a = wekoFn(3);
+let b = wekoFn(3);
+
+console.log(applyx(printWeko, "", 100));
+
+// let execApply = () => {
+//     console.log("I've been clicked");
+// }
+
+// let initApply = () => {
+//     document.getElementById("doit").addEventListener("click", execApply);
+// }
+
+// document.addEventListener("DOMContentReady", initApply);
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("doit").addEventListener("click", () => {
+        let name = document.getElementById("name").value;
+        let times = document.getElementById("times").valueAsNumber;
+        let result = document.getElementById("result");
+
+        let printName = value => `${value} ${name}`;
+
+        result.innerHTML = applyx(printName, "", times);
+    });
+});
 
 
 
