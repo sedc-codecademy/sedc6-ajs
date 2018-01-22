@@ -26,3 +26,28 @@ function test() {
 }
 
 test();
+
+//Usage of object.assing in classes
+class Point {
+    constructor(x, y) {
+        Object.assign(this, {x, y});
+    }
+}
+
+//Assign methods to class
+Object.assign(SomeClass.prototype, {
+    someMethod(arg1, arg2) {
+        //···
+    },
+    anotherMethod() {
+        //···
+    }
+});
+
+//prev example equals to
+SomeClass.prototype.someMethod = function (arg1, arg2) {
+    ···
+};
+SomeClass.prototype.anotherMethod = function () {
+    ···
+};
