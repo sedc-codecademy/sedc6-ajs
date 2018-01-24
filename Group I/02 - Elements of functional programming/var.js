@@ -18,9 +18,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("run").addEventListener("click", () => {
         document.getElementById("container").innerHTML = "";
-        let count = document.getElementById("count").valueAsNumber;
+        const count = document.getElementById("count").valueAsNumber;
         for (let i = 0; i < count; i += 1) {
-            let button = document.createElement("button");
+            const button = document.createElement("button");
             button.innerHTML = `Button #${i + 1}`;
             button.addEventListener("click", (i => () => {
                 document.getElementById("result").innerHTML += `Button #${i + 1} has been clicked`;
