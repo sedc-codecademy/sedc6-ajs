@@ -1,3 +1,8 @@
+let numnames = [
+    "zero", "one", "two", "three", "four", "five",
+    "six", "seven", "eight", "nine","ten"
+]
+
 console.log("one");
 
 setTimeout(function(){
