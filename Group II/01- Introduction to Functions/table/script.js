@@ -1,4 +1,5 @@
-$(function(){
+
+    $(function(){
     function TableData(list){
         this.listOfSongs = list;
         this.minMax = $('input[name="minmax"]');
@@ -20,7 +21,7 @@ $(function(){
                 $("<td>").text(element.song).appendTo(row)
                 $("<td>").text(element.artist).appendTo(row)
                 $("<td>").text(element.releaseYear).appendTo(row)
-                $("<td>").text(element.duration).appendTo(row)
+                $("<td>").      text(element.duration).appendTo(row)
                 this.tbody.append(row);
             });
 

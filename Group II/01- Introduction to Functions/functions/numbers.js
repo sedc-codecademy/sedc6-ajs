@@ -14,7 +14,7 @@
 
 // maximum number 
  let maximumNumber = filteredNumbers.reduce((max, num) => (max = max < num ? num : max), 0);
-
+ 
 // minimum number
  let minimumNumber = filteredNumbers.reduce((min, num) => (min = min > num ? num : min), Infinity);
 
