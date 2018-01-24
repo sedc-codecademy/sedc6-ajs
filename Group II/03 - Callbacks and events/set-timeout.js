@@ -34,17 +34,31 @@ let nested = () => {
     }, 1000)
 }
 
-let tail =[
+let tail = [
     "zero", "one", "two", "three", "four", "five",
     "six", "seven", "eight", "nine", "ten"
 ];
 
-setTimeout(() => {
-    [head, ...tail] = tail;
-    console.log(head);
+let head_tail = (() => {
     setTimeout(() => {
         [head, ...tail] = tail;
         console.log(head);
+        setTimeout(() => {
+            [head, ...tail] = tail;
+            console.log(head);
+        }, 1000);
     }, 1000);
-}, 1000);
+})();
 
+function iterateTimeout(array){
+    [head, ...tail] = array;
+    console.log(head);
+    if (tail.length){
+        setTimeout(() => {
+            iterateTimeout(tail);
+        }, 1000);
+    }
+}
+
+iterateTimeout(numnames);
+console.log("done");
