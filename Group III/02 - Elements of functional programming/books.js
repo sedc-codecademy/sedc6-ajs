@@ -1,25 +1,33 @@
 let books = [{
-    author: "Vernon Vinge",
+    authorFirst: "Vernon",
+    authorLast: "Vinge",
     title: "Marooned in realtime"
 }, {
-    author: "Arthur Clarke",
+    authorFirst: "Arthur",
+    authorLast: "Clarke",
     title: "Randezvous with Rama",
 }, {
-    author: "Isaac Asimov",
+    authorFirst: "Isaac",
+    authorLast: "Asimov",
     title: "The gods themselves",
 }, {
-    author: "Margaret Atwood",
+    authorFirst: "Margaret",
+    authorLast: "Atwood",
     title: "The handmaid's tale",
 }, {
-    author: "Vernon Vinge",
+    authorFirst: "Vernon",
+    authorLast: "Vinge",
     title: "Fire in the deep"
 }, {
-    author: "Andy Weir",
+    authorFirst: "Andy",
+    authorLast: "Weir",
     title: "The martian",
 }, {
-    author: "Andy Weir",
+    authorFirst: "Andy",
+    authorLast: "Weir",
     title: "Artemis",
 }, {
-    author: "Vernon Vinge",
+    authorFirst: "Vernon",
+    authorLast: "Vinge",
     title: "A deepness in the sky"
 }]
