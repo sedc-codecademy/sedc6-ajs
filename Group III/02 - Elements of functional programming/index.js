@@ -78,15 +78,57 @@ console.log(processValues(mul, values));
 
 console.log("==========================");
 
+function mulNonLambda(x, y) {
+    console.log("I'm multiplyin'");
+    return x + y;
+}
 
-let values = [
-    { name: "Petar", lastName: "Petrov"},
-    { name: "Risto", lastName: "Petrov"},
-    { name: "Blazo", lastName: "Petrov"},
+let mulLambda = (x, y) => {
+    console.log("I'm multiplyin'");
+    return x + y;
+};
+
+let mulLambda2 = (x, y) => x + y;
+
+function squareNonLambda(n) {
+    return n * n;
+}
+
+let squareLambda = n => n * n;
+
+console.log("==========================");
+
+let names = [
+    { name: "Petar", lastName: "Petrov" },
+    { name: "Risto", lastName: "Petrov" },
+    { name: "Blazo", lastName: "Petrov" },
 ];
- 
+
 let getFullName = function (firstName, lastName) {
     return firstName + " " + lastName;
 }
 
-let final = "Petar Petrov & Risto Petrov & Blazo Petrov";
+let getInitial = function (firstName, lastName) {
+    return firstName[0];
+}
+
+// let final = processNames(...)
+// // "Petar Petrov & Risto Petrov & Blazo Petrov";
+
+// let final2 = processNames(...)
+// "Petrov, Petar / Petrov, Risto / Petrov, Blazo";
+
+function processNames(processor, values, separator) {
+    let result = [];
+    for (let index = 0; index < values.length; index++) {
+        const element = values[index];
+        result.push(processor(element.name, element.lastName));
+    }
+    return result.join(` ${separator} `);
+}
+
+
+console.log(processNames(getFullName, names, "&"));
+console.log(processNames((first, last) => `${last}, ${first}`, names, "/"));
+console.log(processNames((first, last) => first[0], names, "/"));
+console.log(processNames((first, last) => first, names, "/"));
