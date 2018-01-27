@@ -70,7 +70,7 @@ let values = [
 
 
 function processValues(values) {
-    let add =(x, y) => x + y; 
+    let add = (x, y) => x + y;
     let operations = {
         "+": add,
         "*": (x, y) => x * y,
@@ -97,6 +97,31 @@ let names = [
 
 let resultFirst = "Peter Peterson & Rick Roll & Blaze Speed";
 let resultSecond = "Peterson, Peter / Roll, Rick / Speed, Blaze"
+let resultThrid = "PP|RR|BS";
 
-processNames(names, ...)
-processNames(names, ...)
+let getFullName = nameObject => `${nameObject.name} ${nameObject.lastName}`;
+let getOtherName = nameObject => `${nameObject.lastName}, ${nameObject.name}`;
+
+console.log(getFullName({ name: "Peter", lastName: "Peterson" }));
+console.log(getOtherName({ name: "Peter", lastName: "Peterson" }));
+
+
+let processNames = function (names, processor, separator) {
+    let result = [];
+    for (let index = 0; index < names.length; index++) {
+        const element = names[index];
+        const nameResult = processor(element);
+        result.push(nameResult);
+    }
+    return result.join(separator);
+}
+
+console.log(processNames(names, getFullName, " & "));
+console.log(processNames(names, getOtherName, " / "));
+console.log(processNames(names,
+    nameObject => `${nameObject.name[0]}${nameObject.lastName[0]}`,
+    "|"));
+console.log(processNames(names,
+    nameObject => `${nameObject.name.toLowerCase()[0]}${nameObject.lastName.toLowerCase()}@example.com`,
+    "\n"));
+
