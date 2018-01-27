@@ -97,3 +97,6 @@ let names = [
 
 let resultFirst = "Peter Peterson & Rick Roll & Blaze Speed";
 let resultSecond = "Peterson, Peter / Roll, Rick / Speed, Blaze"
+
+processNames(names, ...)
+processNames(names, ...)
