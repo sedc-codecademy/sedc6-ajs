@@ -189,6 +189,66 @@ console.log(filterArray(numbers, n => isPrime(n)));
 console.log("===============");
 
 console.log(mapArray(filterArray(numbers, n => isPrime(n)), n => n * n));
-
 console.log(numbers.filter(n => isPrime(n)).map(n => n * n));
+console.log("===============");
 
+function getSquares2(array) {
+    return mapArray(array, n => n * n);
+}
+
+console.log(numbers);
+console.log(getSquares(numbers));
+console.log(mapArray(numbers, n => n * n));
+console.log(getSquares2(numbers));
+console.log("===============");
+
+function getDoubles2(array) {
+    return mapArray(array, n => 2 * n);
+}
+
+function getCubes(array) {
+    return mapArray(array, n => n * n * n);
+}
+
+function makeArrayFunction(operation) {
+    return function (array) {
+        return mapArray(array, operation);
+    }
+}
+
+//let makeArrayFunction = operation => array => mapArray(array, operation);
+
+let getSquares3 = makeArrayFunction(n => n * n);
+console.log(getSquares3(numbers));
+console.log("===============");
+
+console.log(mapArray(numbers, n => n * n));
+console.log(makeArrayFunction(n => n * n)(numbers));
+console.log("===============");
+
+// add(2, 3) // (num, num) => num
+addCurry(2)(3) // num => (num => num)
+
+function addCurry(x) {
+    return function (y) {
+        return x + y;
+    }
+}
+
+//let addCurry = x => y => x + y;
+
+let add2 = addCurry(2);
+console.log(add2(3));
+
+function addComplete(x, y) {
+    if (typeof y === "undefined") {
+        return function (y) {
+            return x + y;
+        }
+    } else {
+        return x + y;
+    }
+}
+
+console.log("addComplete(2, 3)", addComplete(2, 3));
+console.log("addComplete(2)(3)", addComplete(2)(3));
