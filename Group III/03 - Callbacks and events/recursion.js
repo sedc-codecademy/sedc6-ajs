@@ -1,4 +1,4 @@
-//let callCount = 0;
+let callCount = 0;
 
 function endless() {
     callCount += 1;
@@ -78,15 +78,52 @@ function getTreeSize(tree) {
 
 console.log(getTreeSize(tree));
 
-let callCount = 0;
+let fibRec = (() => {
+    let callCount = 0;
 
-function fibbonacci(n) {
-    callCount +=1;
-    if (n===0 || n===1)
-        return 1;
+    function fibbonacci(n) {
+        callCount += 1;
+        if (n === 0 || n === 1)
+            return 1;
 
-    return fibbonacci(n - 1) + fibbonacci(n - 2);
-}
+        return fibbonacci(n - 1) + fibbonacci(n - 2);
+    }
 
-console.log(fibbonacci(42));
-console.log(callCount);
+    return {
+        fibbonacci: fibbonacci,
+        getCallCount: () => callCount,
+        resetCallCount: () => callCount = 0
+    }
+})();
+
+console.log(fibRec.fibbonacci(40));
+console.log(fibRec.getCallCount());
+
+let fibMemo = (() => {
+    let callCount = 0;
+
+    let result = {
+        0: 1,
+        1: 1
+    }
+
+    function fibbonacci(n) {
+        callCount += 1;
+
+        if (result[n])
+            return result[n];
+
+        let fib = fibbonacci(n - 1) + fibbonacci(n - 2);
+        result[n] = fib;
+        return fib;
+    }
+
+    return {
+        fibbonacci: fibbonacci,
+        getCallCount: () => callCount,
+        resetCallCount: () => callCount = 0
+    }
+})();
+
+console.log(fibMemo.fibbonacci(40));
+console.log(fibMemo.getCallCount());

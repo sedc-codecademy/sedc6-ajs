@@ -57,3 +57,17 @@ login(username, password, function (userData) {
 }, function (error) {
     // ... 
 });
+
+
+login(username, password)
+    .then(userData => getPermission(userData, imageData))
+    .then(isAllowed => {
+        if (isAllowed) {
+            return writeLog(userData, imageData, timestamp);
+        } else {
+            return writeFailLog(userData, imageData, timestamp);
+        }
+    })
+    .then(() => setLike(userData, imageData, timestamp))
+    .then(() => /*update ui*/)
+    .catch((error) => /* show error*/)

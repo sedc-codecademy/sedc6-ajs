@@ -46,7 +46,7 @@ function printNested() {
 };
 
 
-(function iterateTimeout(array) {
+function iterateTimeout(array) {
     const [head, ...tail] = array;
     console.log(head);
     if (tail.length) {
@@ -54,4 +54,22 @@ function printNested() {
             iterateTimeout(tail);
         }, 1000);
     }
-})(numnames);
+}
+
+function delay(ms){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve();
+        }, ms);
+    });
+}
+
+async function printAsync(array) {
+    for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+        console.log(element);
+        await delay(1000);
+    }
+}
+
+printAsync(numnames);
