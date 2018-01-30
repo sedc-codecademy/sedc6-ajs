@@ -21,3 +21,39 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+/**
+ * 1. Send user/ pass,  recieve userData // Authentication
+ * 2. Send userData, imageData, recieve permission // Authorization
+ * 3. Send userData, imageData, write to log // Auditing
+ * 4. Send userData, imageData, timestamp, display a blue thumb
+ */
+
+let userData = login(username, password);
+let isAllowed = getPermission(userData, imageData);
+if (isAllowed) {
+    writeLog(userData, imageData, timestamp);
+    setLike(userData, imageData, timestamp);
+    // update ui
+} else {
+    writeFailLog(userData, imageData, timestamp);
+    // show error;
+}
+
+
+login(username, password, function (userData) {
+    getPermission(userData, imageData, function (isAllowed) {
+        if (isAllowed) {
+            writeLog(userData, imageData, timestamp, function () {
+                setLike(userData, imageData, timestamp, function () {
+                    // update ui
+                });
+            });
+        } else {
+            writeFailLog(userData, imageData, timestamp, function () {
+                // show error;
+            });
+        }
+    });
+}, function (error) {
+    // ... 
+});
