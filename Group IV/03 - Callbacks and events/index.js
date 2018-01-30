@@ -22,9 +22,43 @@ document.addEventListener("DOMContentLoaded", function () {
  * 4. Send userData, imageData, timestamp, display a blue thumb
  */
 
-let userData = login(user, pass);
-let isAllowed = getPermission(userData, imageData);
-if (isAllowed) {
-    audit(userData, imageData, timestamp);
-    setLike(userData, imageData, timestamp);
-}
+// let userData = login(user, pass);
+// let isAllowed = getPermission(userData, imageData);
+// if (isAllowed) {
+//     audit(userData, imageData, timestamp);
+//     setLike(userData, imageData, timestamp);
+//     // update ui
+// }
+
+
+login(user, pass, function(userData){
+    getPermission(userData, imageData, function(isAllowed){
+        if(isAllowed){
+            audit(userData, imageData, timestamp, function(){
+                setLike(userData, imageData, timestamp, function(){
+                    // update ui
+                })
+            })
+        } else {
+            failAudit(userData, imageData, timestamp, function(){
+                // show error
+            });
+        }
+    })
+}, function (error){
+    // show error
+})
+
+
+login(user, pass)
+    .then(userData => getPermission(userData, imageData))
+    .then(isAllowed => {
+        if(isAllowed){
+            return audit(userData, imageData, timestamp);
+        } else {
+            return Promise.reject(failAudit(userData, imageData, timestamp));
+        }
+    })
+    .then(() => setLike(userData, imageData, timestamp))
+    .then(() => /*updateUI */ )
+    .catch(error => /*show error */ ))
