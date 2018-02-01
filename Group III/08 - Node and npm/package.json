@@ -1,0 +1,14 @@
+{
+  "name": "node-npm-demo",
+  "version": "0.0.1",
+  "description": "Node and npm examples for SEDC 6",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wekoslav Stefanovski",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
