@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "removeComments": false,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "noEmitOnError": true,
+        "target": "es5",
+        "pretty": true
+    },
+    "files": [
+        "script.ts",
+        "index.ts",
+    ]
+}

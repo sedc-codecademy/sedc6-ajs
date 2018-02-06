@@ -1,0 +1,2 @@
+alert("TS");
+alert("js");
