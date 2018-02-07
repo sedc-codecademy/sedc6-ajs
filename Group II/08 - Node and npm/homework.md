@@ -16,3 +16,16 @@ From the books data, generate a file that will contain data about the authors of
 ```
 
 # Part the second
+
+## In the book site, implement sorting and filtering at the same time
+When clicking sort by author or title, the search term should be respected.
+When clicking find, the sort order should be preserved.
+
+## In the book site, implement paging.
+There should be a previous button page (if applicable)
+There should be a next button page (if applicable)
+The API should handle invalid paging input (0, -1, 2000, lizard)
+The paging should be consistent with the filtering and sorting
+
+## (Bonus) Implement adding books
+
