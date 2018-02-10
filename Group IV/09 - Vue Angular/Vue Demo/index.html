@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        [v-cloak] > * { display:none }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <h1>Yes, {{msg}}</h1>
+        <input type="text" v-model="greet">
+        <p>
+            Hello, {{greet}}
+            <button v-on:click="setJohn()">Greet John</button>
+        </p>
+        <button v-on:click="toggleBlock()">
+            {{isDisplaying ? "Hide Block" : "Show Block"}}
+        </button>
+
+        <div v-if="isDisplaying">
+            <h2>This is BLOCK!!</h2>
+        </div>
+
+        <ol>
+            <li v-for="champ in champions" v-show="champ.isAvailable">
+                {{champ.name}}
+                <button v-on:click="removeChamp(champ)">X</button>
+            </li>
+        </ol>
+        <button v-on:click="removeChamp()">Remove Champ</button>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<div class="container" >
+    <!-- Search Input -->
+    <div class="form-group row" style="margin-top:5%;">
+        <div class="col-9 offset-md-1">
+            <input class="form-control" type="text" [(ngModel)]="queryString" (keyup.enter)="search()" placeholder="Enter keyword of book..">
+        </div>
+        <div class="col-1">
+            <button type="button" class="btn btn-light" (click)="search()">Search</button>
+        </div>
+    </div>
+    <!-- /Search Input -->
+    <div class="row" *ngIf="loading">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="">
+    </div>
+
+    <!-- Table -->
+    <div class="row"  *ngIf="!loading">
+        <div class="col-10 offset-md-1" style="margin-top:2%;">
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">Cover</th>
+                    <th scope="col">Book Name</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Link</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Row Element -->
+                <tr *ngFor="let book of suggestions">
+                    <th scope="row">
+                      <img src="{{book.coverUrl}}" alt="Book Cover">
+                    </th>
+                    <td>{{book.title}}</td>
+                    <td>{{book.author}}</td>
+                    <td>
+                      <a routerLink="{{'/details/' + book.title}}">
+                        Link
+                      </a>
+                    </td>
+                </tr>
+                <!-- /Row Element -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- /Table -->
+</div>
