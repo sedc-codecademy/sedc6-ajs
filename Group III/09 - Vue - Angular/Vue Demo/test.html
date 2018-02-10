@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <div class="container" >
+        <!-- Search Input -->
+        <div class="form-group row" style="margin-top:5%;">
+            <div class="col-9 offset-md-1">
+                <input class="form-control" type="text" v-model="query" placeholder="Enter keyword of buissnes or similar..">
+            </div>
+            <div class="col-1">
+                <button type="button" class="btn btn-light" v-on:click="sendRequest()">Search</button>
+            </div>
+        </div>
+        <!-- /Search Input -->
+
+        <!-- Table -->
+        <div class="row">
+            <div class="col-10 offset-md-1" style="margin-top:2%;">
+                <table class="table">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Username</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Row Element -->
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <!-- /Row Element -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /Table -->
+    </div>
+</div>
+
+</body>
+</html>

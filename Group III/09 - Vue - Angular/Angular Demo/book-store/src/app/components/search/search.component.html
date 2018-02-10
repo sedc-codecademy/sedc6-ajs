@@ -1,0 +1,37 @@
+<div class="container" >
+    <!-- Search Input -->
+    <div class="form-group row" style="margin-top:5%;">
+        <div class="col-10 offset-md-1">
+            <input class="form-control" type="text" [(ngModel)]="query" (keyup.enter)="search()" placeholder="Enter keyword of book..">
+        </div>
+        <div class="col-1">
+            <button type="button" class="btn btn-light" (click)="search()">Search</button>
+        </div>
+    </div>
+    <!-- /Search Input -->
+  <!-- Table -->
+  <div class="row">
+      <div class="col-10 offset-md-1" style="margin-top:2%;">
+          <table class="table">
+              <thead class="thead-light">
+              <tr>
+                  <th scope="col">Cover Picture</th>
+                  <th scope="col">Book Name</th>
+                  <th scope="col">Author</th>
+                  <th scope="col">Link</th>
+              </tr>
+              </thead>
+              <tbody>
+              <!-- Row Element -->
+              <tr *ngFor="let book of suggestions">
+                  <book-detail [book]="book"></book-detail>
+              </tr>
+              <!-- /Row Element -->
+              </tbody>
+          </table>
+      </div>
+  </div>
+  <!-- /Table -->
+
+
+</div>
